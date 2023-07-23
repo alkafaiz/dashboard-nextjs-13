@@ -11,7 +11,6 @@ function Navbar() {
             justifyContent={'space-between'}
             w={'full'}
             alignItems={'center'}
-            width={'80%'}
             mx={'auto'}
             py={5}
             fontSize={'xs'}

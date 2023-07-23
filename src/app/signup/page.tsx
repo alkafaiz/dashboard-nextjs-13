@@ -3,7 +3,7 @@
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import Signup from '@/components/Signup';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Container, Heading, Text } from '@chakra-ui/react';
 
 interface Props {
     heading?: string;
@@ -15,8 +15,8 @@ function Page({ heading, description }: Props) {
         <>
             <Box as="main" minH="100vh" py={4} px={{ base: 4, lg: 4 }}>
                 <Box
-                    mx="auto"
-                    color={'white'}
+                    position={'relative'}
+                    mx={'auto'}
                     _before={{
                         content: '""',
                         position: 'absolute',
@@ -32,12 +32,17 @@ function Page({ heading, description }: Props) {
                         bgPosition: 'center',
                         bgSize: 'auto',
                     }}
+                ></Box>
+                <Container
+                    color={'white'}
                     pb={10}
-                    borderRadius={15}
-                    position={'relative'}
+                    maxW={'6xl'}
+                    display={'flex'}
+                    flexDirection={'column'}
+                    alignItems={'center'}
                 >
                     <Navbar />
-                    <Box textAlign="center" position={'relative'} mt={10}>
+                    <Box textAlign="center" position={'relative'} my={10}>
                         <Heading size="lg" fontWeight="bold">
                             {heading}
                         </Heading>
@@ -45,14 +50,12 @@ function Page({ heading, description }: Props) {
                             {description}
                         </Text>
                     </Box>
-                </Box>
-                <Box display="flex" justifyContent={'center'} mb={32}>
                     <Signup />
-                </Box>
+                </Container>
             </Box>
-            <Box width={'80%'} pb={8} mx={'auto'}>
+            <Container maxW={'6xl'} my={8}>
                 <Footer />
-            </Box>
+            </Container>
         </>
     );
 }
