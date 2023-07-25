@@ -56,7 +56,7 @@ function Signup() {
             </form>
             <Text color="gray" mt={4}>
                 Already have an account?{' '}
-                <Link fontWeight={'bold'} href="/login" color="brand.900" _hover={{ color: 'brand.800' }}>
+                <Link fontWeight={'bold'} href="/signin" color="brand.900" _hover={{ color: 'brand.800' }}>
                     Sign in
                 </Link>
             </Text>

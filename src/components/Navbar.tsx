@@ -5,13 +5,14 @@ import { ImKey } from 'react-icons/im';
 
 interface Props {
     variant?: 'ghost' | 'primary';
+    fixedVariant?: boolean;
 }
 
-function Navbar({ variant }: Props) {
+function Navbar({ variant, fixedVariant }: Props) {
     // change background color on scroll
     const [scrollNav, setScrollNav] = useState(variant === 'primary');
     const changeNav = () => {
-        if (variant === 'ghost') return;
+        if (fixedVariant) return;
 
         if (window.scrollY >= 50) {
             setScrollNav(true);
@@ -107,6 +108,7 @@ function Navbar({ variant }: Props) {
 
 Navbar.defaultProps = {
     variant: 'ghost',
+    fixedVariant: false,
 };
 
 export default Navbar;
