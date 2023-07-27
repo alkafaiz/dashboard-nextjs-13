@@ -1,20 +1,48 @@
 'use client';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { BsFillPersonFill, BsFillCreditCardFill } from 'react-icons/bs';
+import { IoHome, IoBuild, IoStatsChart, IoDocument, IoRocketSharp } from 'react-icons/io5';
 import { Box, Divider, Flex, Heading, LinkBox, LinkOverlay, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
+import ListMenuItem from '@/components/ListMenuItem';
 
 const navs = [
     {
         label: 'Dashboard',
         href: '/',
+        icon: <IoHome />,
     },
     {
-        label: 'Users',
-        href: '/users',
+        label: 'Table',
+        href: '/table',
+        icon: <IoStatsChart />,
     },
     {
-        label: 'Settings',
-        href: '/settings',
+        label: 'Billing',
+        href: '/billing',
+        icon: <BsFillCreditCardFill />,
+    },
+    {
+        label: 'RTL',
+        href: '/rtl',
+        icon: <IoBuild />,
+    },
+];
+
+const accountNavs = [
+    {
+        label: 'Profile',
+        href: '/profile',
+        icon: <BsFillPersonFill />,
+    },
+    {
+        label: 'Sign in',
+        href: '/signin',
+        icon: <IoDocument />,
+    },
+    {
+        label: 'Log out',
+        href: '/logout',
+        icon: <IoRocketSharp />,
     },
 ];
 
@@ -27,34 +55,16 @@ const DashboardPage = () => {
                 </Heading>
                 <Divider my={4} />
                 <Stack spacing={0} mt="4">
-                    {navs.map(({ label, href }) => (
-                        <LinkBox
-                            as="a"
-                            maxW="sm"
-                            rounded="lg"
-                            p={3}
-                            display={'flex'}
-                            alignItems={'center'}
-                            color={'gray.400'}
-                            _hover={{ bgColor: 'white', boxShadow: 'sm', color: 'gray.900' }}
-                        >
-                            <Box
-                                bgColor={'white'}
-                                p={'1.5'}
-                                boxShadow={'sm'}
-                                rounded={'lg'}
-                                color={'brand.900'}
-                                mr={3}
-                                _hover={{ bgColor: 'brand.900', color: 'white' }}
-                            >
-                                <BsFillPersonFill />
-                            </Box>
-                            <LinkOverlay href={href}>
-                                <Text fontWeight={'bold'} fontSize={'xs'}>
-                                    {label}
-                                </Text>
-                            </LinkOverlay>
-                        </LinkBox>
+                    {navs.map(({ label, href, icon }) => (
+                        <ListMenuItem key={label} label={label} href={href} icon={icon} />
+                    ))}
+                </Stack>
+                <Text mt={8} ml={3} mb={2} fontWeight={'bold'} fontSize={'xs'}>
+                    ACCOUNT PAGES
+                </Text>
+                <Stack spacing={0} mt="4">
+                    {accountNavs.map(({ label, href, icon }) => (
+                        <ListMenuItem key={label} label={label} href={href} icon={icon} />
                     ))}
                 </Stack>
             </Box>
