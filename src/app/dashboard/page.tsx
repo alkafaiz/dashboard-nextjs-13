@@ -1,11 +1,12 @@
 'use client';
 import { BsFillPersonFill, BsFillCreditCardFill } from 'react-icons/bs';
-import { IoHome, IoBuild, IoStatsChart, IoDocument, IoRocketSharp } from 'react-icons/io5';
-import { Box, Divider, Flex, Heading, LinkBox, LinkOverlay, Stack, Text } from '@chakra-ui/react';
+import { IoHome, IoBuild, IoStatsChart, IoDocument, IoRocketSharp, IoWallet, IoGlobeOutline, IoDocumentText, IoCart } from 'react-icons/io5';
+import { Box, Divider, Flex, Heading, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 import ListMenuItem from '@/components/ListMenuItem';
 import CardDocumentation from '@/components/CardDocumentation';
 import AppBar from '@/components/AppBar';
+import CardStats from '@/components/CardStats';
 
 const navs = [
     {
@@ -73,6 +74,12 @@ const DashboardPage = () => {
             </Box>
             <Box flexGrow={1} p={4}>
                 <AppBar />
+                <Stack direction={'row'} spacing={4} mt={4}>
+                    <CardStats label="Today's Money" primaryText="$53,000" stat={55} icon={<IoWallet />}/>
+                    <CardStats label="Today's Users" primaryText="2,300" stat={5} icon={<IoGlobeOutline />}/>
+                    <CardStats label="New Clients" primaryText="+3,052" stat={-14} icon={<IoDocumentText />}/>
+                    <CardStats label="Total Sales" primaryText="$173,000" stat={8} icon={<IoCart />}/>
+                </Stack>
             </Box>
         </Flex>
     );
