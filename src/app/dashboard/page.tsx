@@ -4,6 +4,7 @@ import { IoHome, IoBuild, IoStatsChart, IoDocument, IoRocketSharp } from 'react-
 import { Box, Divider, Flex, Heading, LinkBox, LinkOverlay, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 import ListMenuItem from '@/components/ListMenuItem';
+import CardDocumentation from '@/components/CardDocumentation';
 
 const navs = [
     {
@@ -62,11 +63,12 @@ const DashboardPage = () => {
                 <Text mt={8} ml={3} mb={2} fontWeight={'bold'} fontSize={'xs'}>
                     ACCOUNT PAGES
                 </Text>
-                <Stack spacing={0} mt="4">
+                <Stack spacing={0} my="4">
                     {accountNavs.map(({ label, href, icon }) => (
                         <ListMenuItem key={label} label={label} href={href} icon={icon} />
                     ))}
                 </Stack>
+                <CardDocumentation />
             </Box>
             <Box flexGrow={1} p="4" bg="green.400">
                 Box 2
