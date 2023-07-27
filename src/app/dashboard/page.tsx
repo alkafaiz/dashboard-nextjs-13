@@ -5,6 +5,7 @@ import { Box, Divider, Flex, Heading, LinkBox, LinkOverlay, Stack, Text } from '
 import React from 'react';
 import ListMenuItem from '@/components/ListMenuItem';
 import CardDocumentation from '@/components/CardDocumentation';
+import AppBar from '@/components/AppBar';
 
 const navs = [
     {
@@ -70,8 +71,8 @@ const DashboardPage = () => {
                 </Stack>
                 <CardDocumentation />
             </Box>
-            <Box flexGrow={1} p="4" bg="green.400">
-                Box 2
+            <Box flexGrow={1} p={4}>
+                <AppBar />
             </Box>
         </Flex>
     );
