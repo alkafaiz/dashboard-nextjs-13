@@ -7,6 +7,8 @@ import ListMenuItem from '@/components/ListMenuItem';
 import CardDocumentation from '@/components/CardDocumentation';
 import AppBar from '@/components/AppBar';
 import CardStats from '@/components/CardStats';
+import CardHero from '@/components/CardHero';
+import BannerHero from '@/components/BannerHero';
 
 const navs = [
     {
@@ -79,6 +81,10 @@ const DashboardPage = () => {
                     <CardStats label="Today's Users" primaryText="2,300" stat={5} icon={<IoGlobeOutline />}/>
                     <CardStats label="New Clients" primaryText="+3,052" stat={-14} icon={<IoDocumentText />}/>
                     <CardStats label="Total Sales" primaryText="$173,000" stat={8} icon={<IoCart />}/>
+                </Stack>
+                <Stack direction={'row'} spacing={4} mt={4}>
+                    <CardHero />
+                    <BannerHero />
                 </Stack>
             </Box>
         </Flex>
