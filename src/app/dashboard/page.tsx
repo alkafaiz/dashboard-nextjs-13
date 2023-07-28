@@ -1,7 +1,17 @@
 'use client';
 import { BsFillPersonFill, BsFillCreditCardFill } from 'react-icons/bs';
-import { IoHome, IoBuild, IoStatsChart, IoDocument, IoRocketSharp, IoWallet, IoGlobeOutline, IoDocumentText, IoCart } from 'react-icons/io5';
-import { Box, Divider, Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import {
+    IoHome,
+    IoBuild,
+    IoStatsChart,
+    IoDocument,
+    IoRocketSharp,
+    IoWallet,
+    IoGlobeOutline,
+    IoDocumentText,
+    IoCart,
+} from 'react-icons/io5';
+import { Avatar, AvatarGroup, Box, Divider, Flex, Heading, Progress, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 import ListMenuItem from '@/components/ListMenuItem';
 import CardDocumentation from '@/components/CardDocumentation';
@@ -9,6 +19,9 @@ import AppBar from '@/components/AppBar';
 import CardStats from '@/components/CardStats';
 import CardHero from '@/components/CardHero';
 import BannerHero from '@/components/BannerHero';
+import CardTable from '@/components/CardTable';
+import { Column } from '@/components/Table';
+import { projectColumns, projects } from '@/utils/mockData';
 
 const navs = [
     {
@@ -51,6 +64,8 @@ const accountNavs = [
     },
 ];
 
+
+
 const DashboardPage = () => {
     return (
         <Flex bgColor={'#F8F9FA'} height={'100vh'} width={'full'}>
@@ -74,18 +89,31 @@ const DashboardPage = () => {
                 </Stack>
                 <CardDocumentation />
             </Box>
-            <Box flexGrow={1} p={4}>
+            <Box flexGrow={1} overflow={'scroll'}>
                 <AppBar />
-                <Stack direction={'row'} spacing={4} mt={4}>
-                    <CardStats label="Today's Money" primaryText="$53,000" stat={55} icon={<IoWallet />}/>
-                    <CardStats label="Today's Users" primaryText="2,300" stat={5} icon={<IoGlobeOutline />}/>
-                    <CardStats label="New Clients" primaryText="+3,052" stat={-14} icon={<IoDocumentText />}/>
-                    <CardStats label="Total Sales" primaryText="$173,000" stat={8} icon={<IoCart />}/>
-                </Stack>
-                <Stack direction={'row'} spacing={4} mt={4}>
-                    <CardHero />
-                    <BannerHero />
-                </Stack>
+                <Box p={4} pt={0}>
+                    <Stack direction={'row'} spacing={4}>
+                        <CardStats label="Today's Money" primaryText="$53,000" stat={55} icon={<IoWallet />} />
+                        <CardStats label="Today's Users" primaryText="2,300" stat={5} icon={<IoGlobeOutline />} />
+                        <CardStats label="New Clients" primaryText="+3,052" stat={-14} icon={<IoDocumentText />} />
+                        <CardStats label="Total Sales" primaryText="$173,000" stat={8} icon={<IoCart />} />
+                    </Stack>
+                    <Stack direction={'row'} spacing={4} mt={4}>
+                        <CardHero />
+                        <BannerHero />
+                    </Stack>
+                    <Stack direction={'row'} spacing={4} mt={4}>
+                        <Box w={'70%'}>
+                            <CardTable title="Projects" description="some description" tableProps={{ columns: projectColumns, data: projects }} />
+                        </Box>
+                        <BannerHero />
+                    </Stack>
+                    <Stack direction={'row'} spacing={4} mt={4}>
+                        <Box w={'100%'}>
+                            <CardTable title="Projects" description="some description" tableProps={{ columns: projectColumns, data: projects }} />
+                        </Box>
+                    </Stack>
+                </Box>
             </Box>
         </Flex>
     );

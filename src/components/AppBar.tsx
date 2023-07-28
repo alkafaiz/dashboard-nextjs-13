@@ -22,7 +22,7 @@ import { BsFillPersonFill } from 'react-icons/bs';
 
 function AppBar() {
     return (
-        <Flex justifyContent={'space-between'}>
+        <Flex justifyContent={'space-between'} pos={'sticky'} top={0} bgColor={'#F8F9FA'} zIndex={9} p={4}>
             <Box>
                 <Breadcrumb fontSize={'xs'}>
                     <BreadcrumbItem>
