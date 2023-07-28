@@ -81,7 +81,7 @@ export const optionsBar: ChartOptions<'bar'> = {
 
 function CardActiveUsers({ title, description }: CardActiveUsersProps & { children?: React.ReactNode }) {
     return (
-        <Card flexGrow={1} rounded={'xl'} p={4}>
+        <Card flexGrow={1} rounded={'xl'} p={4} maxH={530}>
             <Box
                 height={250}
                 mb={5}

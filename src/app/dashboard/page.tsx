@@ -50,9 +50,31 @@ import { LuMoreVertical } from 'react-icons/lu';
 import CardTimeline from '@/components/CardTimeline';
 import CardActiveUsers from '@/components/CardActiveUsers';
 
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    PointElement,
+    LineElement,
+    Filler,
+} from 'chart.js';
+import CardSalesOverview from '@/components/CardSalesOverview';
 
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
+ChartJS.register(
+    ArcElement,
+    Tooltip,
+    Legend,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    PointElement,
+    LineElement,
+    Filler
+);
 
 const navs = [
     {
@@ -133,7 +155,7 @@ const DashboardPage = () => {
                     </Stack>
                     <Stack direction={'row'} spacing={4} mt={4}>
                         <CardActiveUsers />
-                        <CardActiveUsers />
+                        <CardSalesOverview />
                     </Stack>
                     <Stack direction={'row'} spacing={4} mt={4}>
                         <Box w={'70%'} display={'inline-flex'}>
