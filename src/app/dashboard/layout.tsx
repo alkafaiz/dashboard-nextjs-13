@@ -15,7 +15,6 @@ import {
     Filler,
 } from 'chart.js';
 import SideNav from '@/components/SideNav';
-import { useRouter } from 'next/router';
 
 ChartJS.register(
     ArcElement,
@@ -35,8 +34,6 @@ export default function DashboardLayout({
 }: {
     children: React.ReactNode;
 }) {
-
-    console.log({rest11: rest})
     return (
         <Flex bgColor={'#F8F9FA'} height={'100vh'} width={'full'}>
             <Box w={'280px'} p="4">
