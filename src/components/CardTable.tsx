@@ -30,7 +30,7 @@ function CardTable<T>({
     disableMoreButton,
 }: CardTableProps<T> & { children?: React.ReactNode }) {
     return (
-        <Card rounded={'xl'} p={4}>
+        <Card rounded={'xl'} p={4} flexGrow={1}>
             <Flex alignItems={'start'} justifyContent={'space-between'} mb={3}>
                 <Box>
                     <Heading fontSize={'lg'} mb={1}>

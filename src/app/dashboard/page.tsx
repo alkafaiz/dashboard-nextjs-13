@@ -37,8 +37,9 @@ import CardHero from '@/components/CardHero';
 import BannerHero from '@/components/BannerHero';
 import CardTable from '@/components/CardTable';
 import { Column } from '@/components/Table';
-import { authorColumns, authors, projectColumns, projectColumnsV2, projects, projectsV2 } from '@/utils/mockData';
+import { authorColumns, authors, projectColumns, projectColumnsV2, projects, projectsV2, timelineItems } from '@/utils/mockData';
 import { LuMoreVertical } from 'react-icons/lu';
+import CardTimeline from '@/components/CardTimeline';
 
 const navs = [
     {
@@ -118,7 +119,7 @@ const DashboardPage = () => {
                         <BannerHero />
                     </Stack>
                     <Stack direction={'row'} spacing={4} mt={4}>
-                        <Box w={'70%'}>
+                        <Box w={'70%'} display={'inline-flex'}>
                             <CardTable
                                 title="Projects"
                                 description={
@@ -133,7 +134,18 @@ const DashboardPage = () => {
                                 tableProps={{ columns: projectColumns, data: projects }}
                             />
                         </Box>
-                        <BannerHero />
+                        <CardTimeline
+                            title="Orders overview"
+                            description={
+                                <Text fontSize={'xs'} color={'gray.500'}>
+                                    <Text ml={1} as={'span'} fontWeight={'bold'} color={'green.400'}>
+                                        +30%
+                                    </Text>
+                                    &nbsp;this month
+                                </Text>
+                            }
+                            timelineItems={timelineItems}
+                        />
                     </Stack>
                     <Stack direction={'row'} spacing={4} mt={4}>
                         <Box w={'100%'}>

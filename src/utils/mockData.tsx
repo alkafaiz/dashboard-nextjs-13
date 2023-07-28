@@ -318,3 +318,39 @@ export const projectColumnsV2: Column<ProjectV2>[] = [
         ),
     },
 ];
+
+/** timeline mock data */
+
+export const timelineItems = [
+    {
+        title: '$2400, Design changes',
+        createdAt: '22 DEC 7:20 PM',
+        iconSrc: 'https://cdn.worldvectorlogo.com/logos/invision.svg',
+    },
+    {
+        title: 'New order #4219423',
+        createdAt: '21 DEC 7:20 PM',
+        iconSrc: 'https://cdn3.iconfinder.com/data/icons/social-media-2068/64/_shopping-512.png',
+    },
+    {
+        title: 'Server Payments for April',
+        createdAt: '17 DEC 7:20 PM',
+        iconSrc: 'https://cdn-icons-png.flaticon.com/512/873/873120.png',
+    },
+    {
+        title: 'New card added for order #3210145',
+        createdAt: '15 DEC 7:20 PM',
+        iconSrc: 'https://image.similarpng.com/very-thumbnail/2020/06/Logo-visa-icon-PNG.png',
+    },
+    {
+        title: 'Unlock packages for Development',
+        createdAt: '2 DEC 7:20 PM',
+        iconSrc: 'https://cdn-icons-png.flaticon.com/512/1532/1532556.png',
+    },
+    {
+        title: 'New order #9851258',
+        createdAt: '1 DEC 7:20 PM',
+        iconSrc: 'https://cdn3.iconfinder.com/data/icons/social-media-2068/64/_shopping-512.png',
+    },
+
+];
