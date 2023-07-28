@@ -40,6 +40,7 @@ import { Column } from '@/components/Table';
 import { authorColumns, authors, projectColumns, projectColumnsV2, projects, projectsV2, timelineItems } from '@/utils/mockData';
 import { LuMoreVertical } from 'react-icons/lu';
 import CardTimeline from '@/components/CardTimeline';
+import CardActiveUsers from '@/components/CardActiveUsers';
 
 const navs = [
     {
@@ -117,6 +118,10 @@ const DashboardPage = () => {
                     <Stack direction={'row'} spacing={4} mt={4}>
                         <CardHero />
                         <BannerHero />
+                    </Stack>
+                    <Stack direction={'row'} spacing={4} mt={4}>
+                        <CardActiveUsers />
+                        <CardActiveUsers />
                     </Stack>
                     <Stack direction={'row'} spacing={4} mt={4}>
                         <Box w={'70%'} display={'inline-flex'}>

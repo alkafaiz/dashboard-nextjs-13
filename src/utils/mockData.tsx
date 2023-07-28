@@ -1,5 +1,6 @@
 import { Column } from '@/components/Table';
 import { Flex, Avatar, AvatarGroup, Progress, Text, Box } from '@chakra-ui/react';
+import { IoBuild, IoCart, IoRocket, IoWallet } from 'react-icons/io5';
 
 /** projects mock data */
 
@@ -199,7 +200,9 @@ export const authorColumns: Column<Author>[] = [
                 <Avatar src={row.src} size={'sm'} mr={3} sx={{ ' img': { borderRadius: 'md' } }} />
                 <Box>
                     <Text>{row.name}</Text>
-                    <Text fontSize={'xs'} fontWeight={'normal'} color={'gray.500'}>{row.email}</Text>
+                    <Text fontSize={'xs'} fontWeight={'normal'} color={'gray.500'}>
+                        {row.email}
+                    </Text>
                 </Box>
             </Flex>
         ),
@@ -209,7 +212,9 @@ export const authorColumns: Column<Author>[] = [
         accessor: (row: Author) => (
             <Box>
                 <Text>{row.position}</Text>
-                <Text fontSize={'xs'} fontWeight={'normal'} color={'gray.500'}>{row.department}</Text>
+                <Text fontSize={'xs'} fontWeight={'normal'} color={'gray.500'}>
+                    {row.department}
+                </Text>
             </Box>
         ),
     },
@@ -217,7 +222,16 @@ export const authorColumns: Column<Author>[] = [
         Header: 'Status',
         accessor: (row: Author) => (
             <Flex alignItems={'center'}>
-                <Text px={3} py={1} borderRadius={'md'} fontWeight={'medium'} color={'white'} bgColor={row.status === 'Online' ? 'green.300' : 'gray.300'}>{row.status}</Text>
+                <Text
+                    px={3}
+                    py={1}
+                    borderRadius={'md'}
+                    fontWeight={'medium'}
+                    color={'white'}
+                    bgColor={row.status === 'Online' ? 'green.300' : 'gray.300'}
+                >
+                    {row.status}
+                </Text>
             </Flex>
         ),
     },
@@ -352,5 +366,33 @@ export const timelineItems = [
         createdAt: '1 DEC 7:20 PM',
         iconSrc: 'https://cdn3.iconfinder.com/data/icons/social-media-2068/64/_shopping-512.png',
     },
+];
 
+/** mock active users */
+
+export const activeUsersData = [
+    {
+        label: 'Users',
+        value: '32,984',
+        icon: <IoWallet />,
+        completion: 60,
+    },
+    {
+        label: 'Clicks',
+        value: '2,42m',
+        icon: <IoRocket />,
+        completion: 90,
+    },
+    {
+        label: 'Sales',
+        value: '$2,400',
+        icon: <IoCart />,
+        completion: 35,
+    },
+    {
+        label: 'Items',
+        value: '320',
+        icon: <IoBuild />,
+        completion: 65,
+    },
 ];
