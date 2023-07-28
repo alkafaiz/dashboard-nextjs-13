@@ -10,8 +10,24 @@ import {
     IoGlobeOutline,
     IoDocumentText,
     IoCart,
+    IoCheckmarkCircleSharp,
 } from 'react-icons/io5';
-import { Avatar, AvatarGroup, Box, Divider, Flex, Heading, Progress, Stack, Text } from '@chakra-ui/react';
+import {
+    Avatar,
+    AvatarGroup,
+    Box,
+    Divider,
+    Flex,
+    Heading,
+    IconButton,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    Progress,
+    Stack,
+    Text,
+} from '@chakra-ui/react';
 import React from 'react';
 import ListMenuItem from '@/components/ListMenuItem';
 import CardDocumentation from '@/components/CardDocumentation';
@@ -21,7 +37,8 @@ import CardHero from '@/components/CardHero';
 import BannerHero from '@/components/BannerHero';
 import CardTable from '@/components/CardTable';
 import { Column } from '@/components/Table';
-import { projectColumns, projects } from '@/utils/mockData';
+import { authorColumns, authors, projectColumns, projectColumnsV2, projects, projectsV2 } from '@/utils/mockData';
+import { LuMoreVertical } from 'react-icons/lu';
 
 const navs = [
     {
@@ -64,8 +81,6 @@ const accountNavs = [
     },
 ];
 
-
-
 const DashboardPage = () => {
     return (
         <Flex bgColor={'#F8F9FA'} height={'100vh'} width={'full'}>
@@ -104,13 +119,70 @@ const DashboardPage = () => {
                     </Stack>
                     <Stack direction={'row'} spacing={4} mt={4}>
                         <Box w={'70%'}>
-                            <CardTable title="Projects" description="some description" tableProps={{ columns: projectColumns, data: projects }} />
+                            <CardTable
+                                title="Projects"
+                                description={
+                                    <Text fontSize={'xs'} color={'gray.500'} display={'flex'} alignItems={'center'}>
+                                        <IoCheckmarkCircleSharp style={{ color: '#68D391', width: 14, height: 14 }} />{' '}
+                                        <Text ml={1} as={'span'} fontWeight={'bold'}>
+                                            30 done
+                                        </Text>
+                                        &nbsp;this month
+                                    </Text>
+                                }
+                                tableProps={{ columns: projectColumns, data: projects }}
+                            />
                         </Box>
                         <BannerHero />
                     </Stack>
                     <Stack direction={'row'} spacing={4} mt={4}>
                         <Box w={'100%'}>
-                            <CardTable title="Projects" description="some description" tableProps={{ columns: projectColumns, data: projects }} />
+                            <CardTable
+                                disableMoreButton
+                                title="Authors Table"
+                                tableProps={{ columns: authorColumns, data: authors, editable: true }}
+                            />
+                        </Box>
+                    </Stack>
+                    <Stack direction={'row'} spacing={4} mt={4}>
+                        <Box w={'100%'}>
+                            <CardTable
+                                disableMoreButton
+                                title="Projects"
+                                description={
+                                    <Text fontSize={'xs'} color={'gray.500'} display={'flex'} alignItems={'center'}>
+                                        <IoCheckmarkCircleSharp style={{ color: '#68D391', width: 14, height: 14 }} />{' '}
+                                        <Text ml={1} as={'span'} fontWeight={'bold'}>
+                                            30 done
+                                        </Text>
+                                        &nbsp;this month
+                                    </Text>
+                                }
+                                tableProps={{
+                                    columns: projectColumnsV2,
+                                    data: projectsV2,
+                                    editable: true,
+                                    editableAccessor: (row) => (
+                                        <Menu>
+                                            <MenuButton
+                                                color={'gray.500'}
+                                                as={IconButton}
+                                                size={'sm'}
+                                                aria-label="Options"
+                                                icon={<LuMoreVertical />}
+                                                variant="ghost"
+                                                onClick={() => {
+                                                    // implement edit function here
+                                                    console.log('editing:', row);
+                                                }}
+                                            />
+                                            <MenuList>
+                                                <MenuItem>Details</MenuItem>
+                                            </MenuList>
+                                        </Menu>
+                                    ),
+                                }}
+                            />
                         </Box>
                     </Stack>
                 </Box>

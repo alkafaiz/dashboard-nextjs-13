@@ -18,40 +18,48 @@ import type { TableProps } from './Table';
 
 interface CardTableProps<T> {
     title: string;
-    description: string;
+    description?: React.ReactNode;
+    disableMoreButton?: boolean;
     tableProps: TableProps<T>;
 }
 
-function CardTable({ title, description, tableProps }: CardTableProps<any> & { children?: React.ReactNode}) {
+function CardTable<T>({
+    title,
+    description,
+    tableProps,
+    disableMoreButton,
+}: CardTableProps<T> & { children?: React.ReactNode }) {
     return (
         <Card rounded={'xl'} p={4}>
-            <Flex alignItems={'start'} justifyContent={'space-between'} mb={5}>
+            <Flex alignItems={'start'} justifyContent={'space-between'} mb={3}>
                 <Box>
                     <Heading fontSize={'lg'} mb={1}>
                         {title}
                     </Heading>
-                    <Text fontSize={'xs'} color={'gray.500'}>
-                        {description}
-                    </Text>
+                    {description && typeof description === 'string' && (
+                        <Text fontSize={'xs'} color={'gray.500'}>
+                            {description}
+                        </Text>
+                    )}
+                    {description && typeof description !== 'string' && description}
                 </Box>
-                <Menu>
-                    <MenuButton
-                        color={'gray.500'}
-                        as={IconButton}
-                        size={'md'}
-                        aria-label="Options"
-                        icon={<LuMoreVertical />}
-                        variant="ghost"
-                    />
-                    <MenuList>
-                        <MenuItem>Preference</MenuItem>
-                        <MenuItem>Account</MenuItem>
-                        <MenuDivider />
-                        <MenuItem>Settings</MenuItem>
-                    </MenuList>
-                </Menu>
+                {!disableMoreButton && (
+                    <Menu>
+                        <MenuButton
+                            color={'gray.500'}
+                            as={IconButton}
+                            size={'md'}
+                            aria-label="Options"
+                            icon={<LuMoreVertical />}
+                            variant="ghost"
+                        />
+                        <MenuList>
+                            <MenuItem>Details</MenuItem>
+                        </MenuList>
+                    </Menu>
+                )}
             </Flex>
-            <Table  {...tableProps}/>
+            <Table {...tableProps} />
         </Card>
     );
 }
