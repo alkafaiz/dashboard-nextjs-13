@@ -19,22 +19,31 @@ import {
 import React from 'react';
 import { IoNotifications, IoSettingsSharp, IoSearch } from 'react-icons/io5';
 import { BsFillPersonFill } from 'react-icons/bs';
+import { usePathname } from 'next/navigation';
+import { accountNavs, dashboardNavs } from '@/utils/routes';
 
 function AppBar() {
+    const path = usePathname();
+
+    const activeNav = React.useMemo(() => {
+        const nav = [...dashboardNavs, ...accountNavs].find((nav) => nav.href === path);
+        return nav;
+    }, [path]);
+
     return (
         <Flex justifyContent={'space-between'} pos={'sticky'} top={0} bgColor={'#F8F9FA'} zIndex={9} p={4}>
             <Box>
                 <Breadcrumb fontSize={'xs'}>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                        <BreadcrumbLink href="">Pages</BreadcrumbLink>
                     </BreadcrumbItem>
 
                     <BreadcrumbItem>
-                        <BreadcrumbLink href="#">Docs</BreadcrumbLink>
+                        <BreadcrumbLink href={activeNav?.href}>{activeNav?.label}</BreadcrumbLink>
                     </BreadcrumbItem>
                 </Breadcrumb>
                 <Text fontSize="sm" fontWeight={'bold'}>
-                    Dashboard
+                    {activeNav?.label}
                 </Text>
             </Box>
             <Flex>
@@ -42,7 +51,13 @@ function AppBar() {
                     <InputLeftElement pointerEvents="none">
                         <IoSearch color="gray.300" />
                     </InputLeftElement>
-                    <Input fontSize={'sm'} placeholder="Type here..." />
+                    <Input
+                        variant={'outline'}
+                        bgColor={'white'}
+                        borderColor={'gray.100'}
+                        fontSize={'sm'}
+                        placeholder="Type here..."
+                    />
                 </InputGroup>
                 <Link
                     minW={'fit-content'}
