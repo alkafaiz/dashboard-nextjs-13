@@ -36,12 +36,12 @@ function CardTable<T>({
                     <Heading fontSize={'lg'} mb={1}>
                         {title}
                     </Heading>
-                    {description && typeof description === 'string' && (
+                    {description && typeof description === 'string' ? (
                         <Text fontSize={'xs'} color={'gray.500'}>
                             {description}
                         </Text>
-                    )}
-                    {description && typeof description !== 'string' && description}
+                    ) : null}
+                    {description && typeof description !== 'string' ? description : null}
                 </Box>
                 {!disableMoreButton && (
                     <Menu>

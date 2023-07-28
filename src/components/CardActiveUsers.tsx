@@ -95,9 +95,13 @@ function CardActiveUsers({ title, description }: CardActiveUsersProps & { childr
             <Heading fontSize={'lg'} mb={1}>
                 {title}
             </Heading>
-            <Text fontSize={'xs'} color={'gray.500'}>
-                {description}
-            </Text>
+            {description && typeof description === 'string' ? (
+                <Text fontSize={'xs'} color={'gray.500'}>
+                    {description}
+                </Text>
+            ) : null}
+            {description && typeof description !== 'string' ? description : null}
+
             <Flex mt={5} mb={3}>
                 {activeUsersData.map((user, index) => (
                     <Box key={index} width={110} mr={10} sx={{ '&:last-child': { mr: 0 } }}>

@@ -113,7 +113,6 @@ export const options: ChartOptions<'line'> = {
             beginAtZero: true,
             grid: {
                 color: 'rgba(0, 0, 0, 0.05)',
-
             },
             ticks: {
                 stepSize: 100,
@@ -136,13 +135,16 @@ export const options: ChartOptions<'line'> = {
 
 function CardSalesOverview({ title, description }: CardSalesOverviewProps & { children?: React.ReactNode }) {
     return (
-        <Card w="60%" flexGrow={1} rounded={'xl'} display={'flex'} flexDir={'column'} p={4} >
+        <Card w="60%" flexGrow={1} rounded={'xl'} display={'flex'} flexDir={'column'} p={4}>
             <Heading fontSize={'lg'} mb={1}>
                 {title}
             </Heading>
-            <Text fontSize={'xs'} color={'gray.500'}>
-                {description}
-            </Text>
+            {description && typeof description === 'string' ? (
+                <Text fontSize={'xs'} color={'gray.500'}>
+                    {description}
+                </Text>
+            ) : null}
+            {description && typeof description !== 'string' ? description : null}
             <Box flexGrow={1} mt={5} px={0} py={5} borderRadius={'xl'}>
                 <Line options={options} data={data} />
             </Box>

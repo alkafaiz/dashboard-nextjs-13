@@ -24,7 +24,6 @@ const ListMenuItem = ({ label, href, icon, isActive }: ListMenuItemProps) => {
     return (
         <LinkBox
             role="group"
-            as="a"
             maxW="sm"
             rounded="lg"
             p={3}

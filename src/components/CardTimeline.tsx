@@ -2,9 +2,9 @@ import { Avatar, Box, Card, Divider, Flex, Heading, Stack, Text } from '@chakra-
 import React from 'react';
 
 export interface TimelineItem {
-  title: string;
-  createdAt: string;
-  iconSrc: string;
+    title: string;
+    createdAt: string;
+    iconSrc: string;
 }
 
 interface CardTimelineProps {
@@ -19,9 +19,12 @@ function CardTimeline({ title, description, timelineItems }: CardTimelineProps &
             <Heading fontSize={'lg'} mb={1}>
                 {title}
             </Heading>
-            <Text fontSize={'xs'} color={'gray.500'}>
-                {description}
-            </Text>
+            {description && typeof description === 'string' ? (
+                <Text fontSize={'xs'} color={'gray.500'}>
+                    {description}
+                </Text>
+            ) : null}
+            {description && typeof description !== 'string' ? description : null}
             <Stack
                 spacing={1}
                 mt={5}
@@ -29,7 +32,7 @@ function CardTimeline({ title, description, timelineItems }: CardTimelineProps &
                 maxH={400}
                 divider={
                     <Box minH={7} height={10} borderBottom={0}>
-                        <Divider orientation="vertical" ml={2} borderColor={'gray.300'}/>
+                        <Divider orientation="vertical" ml={2} borderColor={'gray.300'} />
                     </Box>
                 }
             >
