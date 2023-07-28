@@ -1,14 +1,26 @@
 import { Box, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
 import React from 'react';
-import { BsFillPersonFill } from 'react-icons/bs';
 
 interface ListMenuItemProps {
     label: string;
     href: string;
     icon: React.ReactElement;
+    isActive: boolean;
 }
 
-const ListMenuItem = ({ label, href, icon }: ListMenuItemProps) => {
+const ListMenuItem = ({ label, href, icon, isActive }: ListMenuItemProps) => {
+    const activeStyles = {
+        linkBox: {
+            bgColor: 'white',
+            boxShadow: 'sm',
+            color: 'gray.900',
+        },
+        icon: {
+            bgColor: 'brand.900',
+            color: 'white',
+        },
+    };
+
     return (
         <LinkBox
             role="group"
@@ -19,7 +31,9 @@ const ListMenuItem = ({ label, href, icon }: ListMenuItemProps) => {
             display={'flex'}
             alignItems={'center'}
             color={'gray.400'}
-            _hover={{ bgColor: 'white', boxShadow: 'sm', color: 'gray.900' }}
+            transition={'all .1s ease-in-out'}
+            _hover={activeStyles.linkBox}
+            {...(isActive && activeStyles.linkBox)}
         >
             <Box
                 bgColor={'white'}
@@ -28,7 +42,8 @@ const ListMenuItem = ({ label, href, icon }: ListMenuItemProps) => {
                 rounded={'lg'}
                 color={'brand.900'}
                 mr={3}
-                _groupHover={{ bgColor: 'brand.900', color: 'white' }}
+                _groupHover={activeStyles.icon}
+                {...(isActive && activeStyles.icon)}
             >
                 {icon}
             </Box>

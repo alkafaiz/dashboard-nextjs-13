@@ -33,7 +33,7 @@ function Signup() {
             </Box>
             <Text fontWeight={'bold'} my={3} color={'lightgray'}>or</Text>
 
-            <form>
+            <form action={'/dashboard'}>
                 <FormControl mb={4}>
                     <FormLabel>Name</FormLabel>
                     <Input type="text" placeholder="Your full name" />

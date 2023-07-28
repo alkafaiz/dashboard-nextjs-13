@@ -1,18 +1,5 @@
-import {
-    Box,
-    Button,
-    Card,
-    FormControl,
-    FormHelperText,
-    FormLabel,
-    Heading,
-    Input,
-    Link,
-    Switch,
-    Text,
-} from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Heading, Input, Link, Switch, Text } from '@chakra-ui/react';
 import React from 'react';
-import { BsFacebook, BsApple, BsGoogle } from 'react-icons/bs';
 
 function Signin() {
     return (
@@ -24,7 +11,7 @@ function Signin() {
                 Enter your email and password to sign in
             </Text>
 
-            <form>
+            <form action="/dashboard">
                 <FormControl mb={4}>
                     <FormLabel>Email</FormLabel>
                     <Input size={'lg'} type="email" placeholder="Your email address" />
@@ -38,7 +25,7 @@ function Signin() {
                     <FormLabel>Remember me</FormLabel>
                 </FormControl>
                 <Button mt={4} type="submit" w={'full'}>
-                    SIGN UP
+                    SIGN IN
                 </Button>
             </form>
             <Text color="gray" mt={4} textAlign={'center'}>
