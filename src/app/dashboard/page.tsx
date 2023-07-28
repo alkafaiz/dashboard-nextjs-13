@@ -37,10 +37,22 @@ import CardHero from '@/components/CardHero';
 import BannerHero from '@/components/BannerHero';
 import CardTable from '@/components/CardTable';
 import { Column } from '@/components/Table';
-import { authorColumns, authors, projectColumns, projectColumnsV2, projects, projectsV2, timelineItems } from '@/utils/mockData';
+import {
+    authorColumns,
+    authors,
+    projectColumns,
+    projectColumnsV2,
+    projects,
+    projectsV2,
+    timelineItems,
+} from '@/utils/mockData';
 import { LuMoreVertical } from 'react-icons/lu';
 import CardTimeline from '@/components/CardTimeline';
 import CardActiveUsers from '@/components/CardActiveUsers';
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
+
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
 const navs = [
     {
