@@ -5,12 +5,10 @@ import Navbar from '@/components/Navbar';
 import Signup from '@/components/Signup';
 import { Box, Container, Heading, Text } from '@chakra-ui/react';
 
-interface Props {
-    heading?: string;
-    description?: string;
-}
+const heading = 'Welcome!';
+const description = 'Use these awesome forms to login or create new account in your project for free.';
 
-function Page({ heading, description }: Props) {
+function Page() {
     return (
         <>
             <Box as="main" minH="100vh" py={4} px={{ base: 4, lg: 4 }}>
@@ -59,10 +57,5 @@ function Page({ heading, description }: Props) {
         </>
     );
 }
-
-Page.defaultProps = {
-    heading: 'Welcome!',
-    description: 'Use these awesome forms to login or create new account in your project for free.',
-};
 
 export default Page;
