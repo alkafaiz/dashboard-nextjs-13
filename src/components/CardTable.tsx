@@ -9,12 +9,14 @@ import {
     MenuDivider,
     MenuItem,
     MenuList,
+    Skeleton,
     Text,
 } from '@chakra-ui/react';
 import React from 'react';
 import { LuMoreVertical } from 'react-icons/lu';
 import Table from './Table';
 import type { TableProps } from './Table';
+import { useDelay } from '@/utils/helper';
 
 interface CardTableProps<T> {
     title: string;
@@ -29,6 +31,7 @@ function CardTable<T>({
     tableProps,
     disableMoreButton,
 }: CardTableProps<T> & { children?: React.ReactNode }) {
+    const isDisplayed = useDelay(700);
     return (
         <Card rounded={'xl'} p={4} flexGrow={1}>
             <Flex alignItems={'start'} justifyContent={'space-between'} mb={3}>
@@ -36,12 +39,18 @@ function CardTable<T>({
                     <Heading fontSize={'lg'} mb={1}>
                         {title}
                     </Heading>
-                    {description && typeof description === 'string' ? (
-                        <Text fontSize={'xs'} color={'gray.500'}>
-                            {description}
-                        </Text>
-                    ) : null}
-                    {description && typeof description !== 'string' ? description : null}
+                    {isDisplayed ? (
+                        <>
+                            {description && typeof description === 'string' ? (
+                                <Text fontSize={'xs'} color={'gray.500'}>
+                                    {description}
+                                </Text>
+                            ) : null}
+                            {description && typeof description !== 'string' ? description : null}
+                        </>
+                    ) : (
+                        <Skeleton height="18px" width={'160px'} />
+                    )}
                 </Box>
                 {!disableMoreButton && (
                     <Menu>

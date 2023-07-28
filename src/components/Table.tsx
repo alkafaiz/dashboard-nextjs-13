@@ -1,4 +1,5 @@
-import { TableContainer, Table, Thead, Tr, Th, Tbody, Td, Button } from '@chakra-ui/react';
+import { useDelay } from '@/utils/helper';
+import { TableContainer, Table, Thead, Tr, Th, Tbody, Td, Button, Skeleton } from '@chakra-ui/react';
 import React from 'react';
 
 export type Column<T> = {
@@ -30,6 +31,8 @@ function defaultEditable<T>(row: T) {
 }
 
 function CustomTable<T>({ columns, data, editable, editableAccessor }: TableProps<T> & { children?: React.ReactNode }) {
+    const isDisplayed = useDelay(600);
+
     const _columns = [
         ...columns,
         ...(editable
@@ -81,9 +84,15 @@ function CustomTable<T>({ columns, data, editable, editableAccessor }: TableProp
                 <Tbody>
                     {data.map((row, i) => (
                         <Tr key={i}>
-                            {_columns.map((column) => (
-                                <Td key={column.Header}>{renderRow(row, column.accessor)}</Td>
-                            ))}
+                            {isDisplayed
+                                ? _columns.map((column) => (
+                                      <Td key={column.Header}>{renderRow(row, column.accessor)}</Td>
+                                  ))
+                                : _columns.map((column) => (
+                                      <Td key={column.Header}>
+                                          <Skeleton height={'20px'} />
+                                      </Td>
+                                  ))}
                         </Tr>
                     ))}
                 </Tbody>

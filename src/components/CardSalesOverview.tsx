@@ -1,5 +1,6 @@
+import { useDelay } from '@/utils/helper';
 import { activeUsersData } from '@/utils/mockData';
-import { Box, Card, Flex, Heading, Progress, Text } from '@chakra-ui/react';
+import { Box, Card, Flex, Heading, Progress, Skeleton, Text } from '@chakra-ui/react';
 import { ChartData, ChartOptions, ScriptableContext } from 'chart.js';
 import React from 'react';
 import { Bar, Line } from 'react-chartjs-2';
@@ -134,6 +135,8 @@ export const options: ChartOptions<'line'> = {
 };
 
 function CardSalesOverview({ title, description }: CardSalesOverviewProps & { children?: React.ReactNode }) {
+    const isDisplayed = useDelay(600);
+
     return (
         <Card w="60%" flexGrow={1} rounded={'xl'} display={'flex'} flexDir={'column'} p={4}>
             <Heading fontSize={'lg'} mb={1}>
@@ -146,7 +149,12 @@ function CardSalesOverview({ title, description }: CardSalesOverviewProps & { ch
             ) : null}
             {description && typeof description !== 'string' ? description : null}
             <Box flexGrow={1} mt={5} px={0} py={5} borderRadius={'xl'}>
+                {isDisplayed ? (
+
                 <Line options={options} data={data} />
+                ) :(
+                    <Skeleton height="300px" width={'100%'} />
+                )}
             </Box>
         </Card>
     );

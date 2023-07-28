@@ -1,5 +1,6 @@
+import { useDelay } from '@/utils/helper';
 import { activeUsersData } from '@/utils/mockData';
-import { Box, Card, Flex, Heading, Progress, Text } from '@chakra-ui/react';
+import { Box, Card, Flex, Heading, Progress, Skeleton, Text } from '@chakra-ui/react';
 import { ChartData, ChartOptions } from 'chart.js';
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
@@ -80,6 +81,8 @@ export const optionsBar: ChartOptions<'bar'> = {
 };
 
 function CardActiveUsers({ title, description }: CardActiveUsersProps & { children?: React.ReactNode }) {
+    const isDisplayed = useDelay();
+
     return (
         <Card flexGrow={1} rounded={'xl'} p={4} maxH={530}>
             <Box
@@ -95,12 +98,18 @@ function CardActiveUsers({ title, description }: CardActiveUsersProps & { childr
             <Heading fontSize={'lg'} mb={1}>
                 {title}
             </Heading>
-            {description && typeof description === 'string' ? (
-                <Text fontSize={'xs'} color={'gray.500'}>
-                    {description}
-                </Text>
-            ) : null}
-            {description && typeof description !== 'string' ? description : null}
+            {isDisplayed ? (
+                <>
+                    {description && typeof description === 'string' ? (
+                        <Text fontSize={'xs'} color={'gray.500'}>
+                            {description}
+                        </Text>
+                    ) : null}
+                    {description && typeof description !== 'string' ? description : null}
+                </>
+            ) : (
+                <Skeleton height="18px" width={'100px'} />
+            )}
 
             <Flex mt={5} mb={3}>
                 {activeUsersData.map((user, index) => (
@@ -113,10 +122,19 @@ function CardActiveUsers({ title, description }: CardActiveUsersProps & { childr
                                 {user.label}
                             </Text>
                         </Flex>
-                        <Text fontSize={'md'} fontWeight={'bold'}>
-                            {user.value}
-                        </Text>
-                        <Progress mt={2} size="xs" value={user.completion} colorScheme={'teal'} />
+                        {isDisplayed ? (
+                            <>
+                                <Text fontSize={'md'} fontWeight={'bold'}>
+                                    {user.value}
+                                </Text>
+                                <Progress mt={2} size="xs" value={user.completion} colorScheme={'teal'} />
+                            </>
+                        ) : (
+                            <>
+                                <Skeleton height="24px" width={'60px'} />
+                                <Skeleton height="4px" mt={2} />
+                            </>
+                        )}
                     </Box>
                 ))}
             </Flex>

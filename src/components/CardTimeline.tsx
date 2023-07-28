@@ -1,4 +1,5 @@
-import { Avatar, Box, Card, Divider, Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import { useDelay } from '@/utils/helper';
+import { Avatar, Box, Card, Divider, Flex, Heading, Skeleton, Stack, Text } from '@chakra-ui/react';
 import React from 'react';
 
 export interface TimelineItem {
@@ -14,17 +15,25 @@ interface CardTimelineProps {
 }
 
 function CardTimeline({ title, description, timelineItems }: CardTimelineProps & { children?: React.ReactNode }) {
+    const isDisplayed = useDelay(800);
+
     return (
         <Card flexGrow={1} rounded={'xl'} p={4}>
             <Heading fontSize={'lg'} mb={1}>
                 {title}
             </Heading>
-            {description && typeof description === 'string' ? (
-                <Text fontSize={'xs'} color={'gray.500'}>
-                    {description}
-                </Text>
-            ) : null}
-            {description && typeof description !== 'string' ? description : null}
+            {isDisplayed ? (
+                <>
+                    {description && typeof description === 'string' ? (
+                        <Text fontSize={'xs'} color={'gray.500'}>
+                            {description}
+                        </Text>
+                    ) : null}
+                    {description && typeof description !== 'string' ? description : null}
+                </>
+            ) : (
+                <Skeleton height="18px" width={'90px'} />
+            )}
             <Stack
                 spacing={1}
                 mt={5}
@@ -37,24 +46,47 @@ function CardTimeline({ title, description, timelineItems }: CardTimelineProps &
                 }
             >
                 {timelineItems.map((item, index) => (
-                    <TimelineItem key={index} {...item} />
+                    <TimelineItem key={index} isLoading={!isDisplayed} {...item} />
                 ))}
             </Stack>
         </Card>
     );
 }
 
-function TimelineItem({ title, createdAt, iconSrc }: { title: string; createdAt: string; iconSrc: string }) {
+function TimelineItem({
+    title,
+    createdAt,
+    iconSrc,
+    isLoading,
+}: {
+    title: string;
+    createdAt: string;
+    iconSrc: string;
+    isLoading?: boolean;
+}) {
     return (
         <Flex alignItems={'center'}>
-            <Avatar src={iconSrc} size={'xs'} mr={2} sx={{ width: 4, height: 4, ' img': { borderRadius: 0 } }} />
+            {isLoading ? (
+                <Skeleton height="16px" width={'24px'} mr={2} />
+            ) : (
+                <Avatar src={iconSrc} size={'xs'} mr={2} sx={{ width: 4, height: 4, ' img': { borderRadius: 0 } }} />
+            )}
             <Box ml={2} pos={'relative'}>
-                <Text fontSize={'xs'} fontWeight={'bold'}>
-                    {title}
-                </Text>
-                <Text fontSize={'xs'} color={'gray.500'} position={'absolute'} top={4}>
-                    {createdAt}
-                </Text>
+                {isLoading ? (
+                    <>
+                        <Skeleton height="18px" width={'160px'} mb={1} />
+                        <Skeleton height="18px" width={'120px'} position={'absolute'} top={5} />
+                    </>
+                ) : (
+                    <>
+                        <Text fontSize={'xs'} fontWeight={'bold'}>
+                            {title}
+                        </Text>
+                        <Text fontSize={'xs'} color={'gray.500'} position={'absolute'} top={4}>
+                            {createdAt}
+                        </Text>
+                    </>
+                )}
             </Box>
         </Flex>
     );
